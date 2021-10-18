@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { font: 18px/1.5 sans-serif; }
+    button, select {font-size: 1em; }
+    .to-upper { text-transform: capitalize; }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+
+<div class="example-wrapper">
+    <div>Type is: {{ vehicle.name }}</div>
+    
+    {% set availableCount = 0 %}
+    {% for info in vehicleInfo %}
+        {% set availableCount = availableCount + info.getAvailableCount %}
+    {% endfor %}
+
+    <div>Available : {{ availableCount }} bike</div>
+
+    <br>
+    <table>
+        <tr>
+            <th>Brand</th>
+            <th>Number Of Passenger</th>
+            <th>Available Count</th>
+        </tr>    
+        {% for info in vehicleInfo %}
+            <tr  class='clickable-row' data-href='url://'>
+                <td class="to-upper">{{ info.getName }}</td>
+                <td>{{ info.getNumberOfPassenger }}</td>
+                <td>{{ info.getAvailableCount }}</td>
+            </tr>    
+        {% endfor %}        
+    </table>
+</div>
+{% endblock %}
