@@ -1,3 +1,11 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+vehicle:
+    path: /vehicle
+    controller: App\Controller\VehicleController::index
+
+vehicle_info:
+    path: /vehicle/info/{id}
+    controller: App\Controller\VehicleController::info     
