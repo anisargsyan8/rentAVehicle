@@ -9,9 +9,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class VehicleController extends AbstractController
 {
-    /**
-     * @Route("/vehicle", name="vehicle")
-     */
     public function index(): Response
     {
         $vehicleTypes = $this->getDoctrine()
