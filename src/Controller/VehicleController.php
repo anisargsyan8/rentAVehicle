@@ -38,4 +38,40 @@ class VehicleController extends AbstractController
             'vehicleInfo' => $vehicleInfo,
         ]);
     }
+
+    public function rent($type, $brand): Response
+    {
+        $vehicleType =  $this->getDoctrine()
+        ->getRepository(Vehicle::class)
+        ->find($type);
+
+        $rentInfo = $this->getDoctrine()
+            ->getRepository(VehicleBrand::class)
+            ->findBy(['vehicle_type' => $type, 'name' => $brand]);
+
+        return $this->render('vehicle/rent.html.twig', [
+            'controller_name' => 'VehicleController',
+            'vehicleType' => $vehicleType,
+            'rentInfo' => $rentInfo,
+        ]);
+    }
+
+    public function update($type, $brand): Response
+    {
+        $vehicle = $this->getDoctrine()->getManager();
+        $vehicleInfo = $vehicle
+            ->getRepository(VehicleBrand::class)
+            ->findBy(['vehicle_type' => $type, 'name' => $brand]);
+
+        if(!$vehicleInfo) {
+            throw $this->createNotFoundException(
+                'No info'
+            );
+        }    
+
+        $vehicleInfo[0]->setAvailableCount($vehicleInfo[0]->getAvailableCount() - 1);
+        $vehicle->flush();
+        
+        return $this->redirectToRoute('vehicle');
+    }
 }

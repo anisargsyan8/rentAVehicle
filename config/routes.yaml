@@ -9,3 +9,11 @@ vehicle:
 vehicle_info:
     path: /vehicle/info/{id}
     controller: App\Controller\VehicleController::info     
+
+rent:
+    path: /rent/{type}/{brand}
+    controller: App\Controller\VehicleController::rent     
+
+update_info:
+    path: /update/{type}/{brand}
+    controller: App\Controller\VehicleController::update     

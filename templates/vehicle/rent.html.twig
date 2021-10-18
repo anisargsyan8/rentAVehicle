@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rent{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { font: 18px/1.5 sans-serif; }
+    button, select {font-size: 1em; }
+    .to-upper { text-transform: capitalize; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Info!!!</h1>
+    <div>Vehicle Type is: <b class="to-upper">{{vehicleType.name}}</b></div>
+    <div>Brand is: 
+        <b class="to-upper">
+            {% if rentInfo[0].name is defined %}
+                {{ rentInfo[0].name}}
+            {% endif %}
+        </b>
+    </div>
+    <div>Number of passenger is: <b class="to-upper">{{ rentInfo[0].getNumberOfPassenger}}</b></div>
+    <div>Still <b class="to-upper">{{ rentInfo[0].getAvailableCount}} {{ rentInfo[0].name }}</b></div>
+    
+    <div>
+        <button><a href="{{ path('vehicle_info', {'id': vehicleType.id}) }}">Back</a></button>
+        {% if rentInfo[0].getAvailableCount > 0 %}
+            <button><a href="{{ path('update_info', {'type': vehicleType.id, 'brand': rentInfo[0].name}) }}">Confirm</a></button>
+        {% endif %}    
+    </div>
+</div>
+{% endblock %}

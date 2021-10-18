@@ -47,4 +47,15 @@ class VehicleBrandRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    // public function findByTypeAndBrand($type, $brand)
+    // {
+    //     return $this->createQueryBuilder('v')
+    //         ->where('v.vehicle_type = :vehicle_type')
+    //         ->andWhere('v.name = :name')
+    //         ->setParameters(['vehicle_type' => $type, 'name' => $brand])
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
 }

@@ -41,12 +41,14 @@
             <th>Brand</th>
             <th>Number Of Passenger</th>
             <th>Available Count</th>
+            <th></th>
         </tr>    
         {% for info in vehicleInfo %}
-            <tr  class='clickable-row' data-href='url://'>
+            <tr  class='clickable-row'>
                 <td class="to-upper">{{ info.getName }}</td>
                 <td>{{ info.getNumberOfPassenger }}</td>
-                <td>{{ info.getAvailableCount }}</td>
+                <td data-count="{{ info.getAvailableCount }}">{{ info.getAvailableCount }}</td>
+                <td><button><a href="{{ path('rent', {'type': info.getVehicleType, 'brand': info.getName}) }}">Order</a></button></td>
             </tr>    
         {% endfor %}        
     </table>
